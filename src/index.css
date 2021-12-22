@@ -5,6 +5,7 @@ body {
 }
 
 #container {
+    min-width: 576px;
     display: flex;
     justify-content: center;
 }

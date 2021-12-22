@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import './TodoList.css'
+import TodoItems from './TodoItems'
 
 class TodoList extends Component{
     constructor(props) {
@@ -9,6 +11,7 @@ class TodoList extends Component{
         };
 
         this.addItem = this.addItem.bind(this);
+        this.deleteItem = this.deleteItem.bind(this);
     }
 
     addItem(e) {
@@ -24,11 +27,22 @@ class TodoList extends Component{
                 items: itemArray
             });
 
-            this._inputElement.value = "";
+           
         }
-        console.log(itemArray);
-
+        // console.log(itemArray);
+    
+        this._inputElement.value = "";
         e.preventDefault();
+    }
+
+    deleteItem(key) {
+        let filteredItems = this.state.items.filter( item => {
+            return (item.key !== key);
+        }) // filteredItems - это новый массив, он содержит все элементы, кроме удаленного
+
+        this.setState({
+            items: filteredItems
+        });
     }
 
     render(){
@@ -37,9 +51,10 @@ class TodoList extends Component{
             <div className="header">
                 <form onSubmit={ this.addItem } >
                     <input placeholder='введите задачу' ref={ el => this._inputElement = el } />
-                    <button type="submit">Ок</button>
+                    <button type="submit">Добавить</button>
                 </form>
             </div>
+            <TodoItems entries={this.state.items} delete={this.deleteItem} />
         </div>
         )
     }
