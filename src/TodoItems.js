@@ -10,7 +10,7 @@ class TodoItems extends Component {
 
     createTasks(item) { 
         return <li onClick={ () => this.props.delete(item.key)} // по клику удаляем элемент из массива
-                     key={item.key}>{item.text}</li>  // перебираем массив запсией
+                     key={item.key}>{item.text}</li>  // перебираем массив
     }
 
     render() {

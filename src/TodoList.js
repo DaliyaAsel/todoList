@@ -29,7 +29,6 @@ class TodoList extends Component{
 
            
         }
-        // console.log(itemArray);
     
         this._inputElement.value = "";
         e.preventDefault();
